@@ -11,3 +11,30 @@ body {
   height: 400px;
   border: 1px solid black;
 }
+
+.form {
+  padding: 20px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: rgb(46, 204, 204);
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+input {
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.form-btn {
+  padding: 6px 10px;
+  border: none;
+  color: white;
+  background-color: rgb(68, 130, 106);
+  cursor: pointer;
+}

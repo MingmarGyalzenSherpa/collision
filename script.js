@@ -1,8 +1,11 @@
 import { generateRandom } from "./helper.js";
 import { colors, balls, ballsCount, speedLimit } from "./config.js";
 
+const quantity = document.querySelector("#quantity");
+const btn = document.getElementById("btn");
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+
 
 class Ball {
   constructor(x, y, dx, dy) {
@@ -61,30 +64,31 @@ for (let i = 0; i < ballsCount; i++) {
 }
 
 function collisionBetweenBalls() {
-  balls.forEach((ball) => {
-    balls.forEach((nextBall) => {
+  for (let i = 0; i < balls.length; i++) {
+    for (let j = 0; j < balls.length; j++) {
+      if (i == j) continue;
       if (
         //for horizontal collision
-        ball.x + ball.radius > nextBall.x - nextBall.radius &&
-        ball.x + ball.radius < nextBall.x + nextBall.radius &&
-        ball.y > nextBall.y - nextBall.radius &&
-        ball.y < nextBall.y + nextBall.radius
+        balls[i].x + balls[i].radius > balls[j].x - balls[j].radius &&
+        balls[i].x + balls[i].radius < balls[j].x + balls[j].radius &&
+        balls[i].y > balls[j].y - balls[j].radius &&
+        balls[i].y < balls[j].y + balls[j].radius
       ) {
-        ball.dx = -ball.dx;
-        nextBall.dx = -nextBall.dx;
+        balls[i].dx = -balls[i].dx;
+        balls[j].dx = -balls[j].dx;
         console.log("collided");
       } else if (
         //for vertical collision
-        ball.y + ball.radius > nextBall.y - nextBall.radius &&
-        ball.y + ball.radius < nextBall.y + nextBall.radius &&
-        ball.x > nextBall.x - nextBall.radius &&
-        ball.x < nextBall.x + nextBall.radius
+        balls[i].y + balls[i].radius > balls[j].y - balls[j].radius &&
+        balls[i].y + balls[i].radius < balls[j].y + balls[j].radius &&
+        balls[i].x > balls[j].x - balls[j].radius &&
+        balls[i].x < balls[j].x + balls[j].radius
       ) {
-        ball.dy = -ball.dy;
-        nextBall.dy = -nextBall.dy;
+        balls[i].dy = -balls[i].dy;
+        balls[j].dy = -balls[j].dy;
       }
-    });
-  });
+    }
+  }
 }
 
 function init() {
